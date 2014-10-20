@@ -4,7 +4,7 @@
 
 import numpy as np
 
-def is_orthogonal(matrix):
+def is_semi_orthogonal(matrix):
     """ Tests whether a matrix is semi-orthogonal
         based on the definition given in the
         assignment text
@@ -18,8 +18,11 @@ def is_orthogonal(matrix):
     B = matrix.T.dot(matrix) # Forms the matrix to be tested
     eps = 1.0e-12
     B[np.abs(B) < eps] = 0 # Makes all entries below a certain threshold zero
-    B = B.getA()
-    
+    try:
+        B = B.getA()
+    except:
+        pass
+
     for i in range(matrix.shape[0]):
         for j in range(matrix.shape[0]):
             if i == j:
@@ -38,7 +41,7 @@ def find_inverse(matrix):
     raises an exception if the matrix
     is not orthogonal.
     """
-    if not is_orthogonal(matrix):
+    if not is_semi_orthogonal(matrix):
         raise Exception("Matrix is not orthogonal")
     
     
@@ -56,8 +59,22 @@ def transform_vector(vec):
     """ Transforms the given vector u_j into
     u_j' as given in problem 1
     """
-    vec = vec.getA()
+    try:
+        vec = vec.getA()
+    except:
+        pass
     return (1./vec.dot(vec.T))*vec
+
+def print_matrix(matrix):
+    try:
+        matrix = matrix.getA()
+    except:
+        pass
+    for i in matrix:
+        for j in i:
+            print("%7.3f" % (j), end="")
+        print()
+
 
 if __name__ == "__main__":
     
