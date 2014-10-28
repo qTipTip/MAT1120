@@ -46,6 +46,4 @@ yc = find_inverse(C).dot(yl)
 ys = find_inverse(S).dot(yo)
 
 plt.plot(time_values, f(time_values), time_values, f_midpoint(time_values, yc, ys))
-
-plt.show()
-
+plt.savefig("Problem9.pdf")

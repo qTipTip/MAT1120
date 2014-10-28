@@ -6,7 +6,6 @@ import numpy as np
 import matplotlib.pylab as plt
 from assignment import *
 
-plt.xkcd()
 # Initializing and calculating matrices C and S
 n = 8
 C = np.zeros((n, n))
@@ -19,6 +18,7 @@ for i in range(n):
         S[i][j] = np.sin((j+1)*t[i])
 
 def f(t):
+    # This is the only line that differs between Problem 8 and 9.
     return (np.pi**2 - t**2)*np.exp(t/(2*np.pi))
 
 def f_l(t):
@@ -47,6 +47,4 @@ yc = find_inverse(C).dot(yl)
 ys = find_inverse(S).dot(yo)
 
 plt.plot(time_values, f(time_values), time_values, f_midpoint(time_values, yc, ys))
-
-plt.show()
-
+plt.savefig("Problem8.pdf")

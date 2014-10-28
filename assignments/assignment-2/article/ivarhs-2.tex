@@ -79,8 +79,7 @@ to each other. In other words, $\mathbf{u}_j \cdot \mathbf{u}_i = 0$ when $j \ne
 \begin{definition}
 	A matrix $U$ is called \textbf{diagonal} if $U$ has non-zero entries only along the
 	main diagonal.
-\end{defintition}
-
+\end{definition}
 We now want to show that the condition is both sufficient and neccessary for the matrix to be \textbf{\textit{semi-orthogonal}}.
 
 Let us first form the matrix $B = U^TU$.
@@ -255,7 +254,7 @@ Multiplying from the left by the matrix $C$, we get
 	\lambda_1\\
 	\vdots \\
 	\lambda_8\\
-  \end{bmatrix} = \left[\left( h(t_1), \dots, h(t_8) \right)\left]_\epsilon
+  \end{bmatrix} = \left[\left( h(t_1), \dots, h(t_8) \right)\right]_\epsilon
 \end{align*}
 Since $h$ was any arbitrary vector from $\mathcal{W}_c$, this means that $C$ is the matrix of $T_c$ with respect to the bases $\mathcal{C}$ and $\epsilon$.
 
@@ -264,7 +263,7 @@ means $T_c$ is an isomorph transformation.
 The matrix for $T_c^{-1}$ is $C^{-1}$. 
 \section*{Problem 6}
 Let $g \in \mathcal{F}\left( \left[ 0, \pi \right], \mathbb{R} \right)$ and set
-$\mathbf{y} = \left(g(t_1), \dots, g(t_8)) \in \mathbb{R}^8$. In addition, let
+$\mathbf{y} = \left(g(t_1), \dots, g(t_8)\right) \in \mathbb{R}^8$. In addition, let
 \begin{align*}
   g^c = T_c^{-1}(\mathbf{y}) \in \mathcal{W}_c
 \end{align*}
@@ -278,4 +277,64 @@ $g^c$ is a function in $\mathcal{W}_c$ that is defined in such a way that $g^c$ 
   T_c(g^c) &= C\left[ g^c \right]_C = y \Leftrightarrow \left[ g^c \right]_C = C^{-1}\mathbf{y}
 \end{align*}.
 
+\section*{Problem 7}
+
+Argue that $V_l$ and $V_o$ are subspaces of $V$. 
+
+We want to show that both $V_l$ and $V_o$ are closed under addition, multiplication by a
+scalar, and also that the zero-function is both spaces. 
+Ill show the calculations for $V_l$, the same is proved for $V_o$ similarly.
+Let $f_1, f_2 \in V_l$, and set $f_3 = f_1 + f_2$.
+We now want to show that $f_3 \in V_l$.
+\begin{align*}
+f_3(-t) = (f_1 + f_2)(-t) = f_1(-t) + f_2(-t) = f_1(t) = f_2(t) = f_3(t)
+\end{align*}
+Thus $V_l$ is closed under addition.
+Now, let $f_3 = cf_1, c \in \mathbb{R}$.
+We want to show that $f_3 \in V_l$
+\begin{align*}
+  f_3(-t) =(cf_1)(t) =  cf_1(-t) = cf_1(t) = f_3(t) \in V_l.\\
+\end{align*}.
+
+We now want to show that if $f \in V$, then $f_l \in V_l$ and $f_o \in V_o$ as well as $f = f_l + f_o$.
+
+Assume $f \in V$. We then have:
+\begin{align*}
+  f_l = \frac{1}{2}\left( f + T\left( f \right) \right) \\
+  f_o = \frac{1}{2}\left( f - T(f) \right)\\
+  f_l + f_o = \frac{1}{2}2f = f\\
+\end{align*}
+To show $f_l \in V_l$ and $f_o \in V_o$.
+\begin{align*}
+  \left[ T(f_l) \right](t) &= \frac{1}{2}\left( \left[ T(f) \right](t) + \left[ T(T(f)) \right](t) \right)\\
+  &= \frac{1}{2}\left( f(t) + f(-t) \right) = f_l(t)
+\end{align*}
+Thus $f_l \in V_l$.
+\begin{align*}
+  \left[ T(f_o) \right](t) &= \frac{1}{2}(f(-t) - f(t)) \\
+  &= f_o(-t) = -f_o(t).
+\end{align*}
+Thus $f_o \in V_o$.
+
+\pagebreak
+\section*{Problem 8}
+This is a 16-midpoint interpolation of the function $f(t) = \left(\pi^2 - t^2\right)e^{t/2\pi}, t \in \left[ -\pi, \pi \right]$
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.5]{Problem8}
+\end{figure}
+\section*{Problem 9}
+This is a 16-midpoint interpolation of the function $f(t) = te^{t/2\pi}, t \in \left[ -\pi, \pi \right]$
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.5]{Problem9}
+\end{figure}
+\pagebreak
+
+\section*{Appendix}
+\lstinputlisting{../src/assignment.py}
+\pagebreak
+\lstinputlisting{../src/problem3.py}
+\pagebreak
+\lstinputlisting{../src/problem8.py}
 \end{document}
