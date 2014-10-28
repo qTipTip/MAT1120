@@ -86,12 +86,22 @@ def matrix_to_tex(matrix, filename):
         body += " \\\\ " + "\n"
     outfile.write(body)
     outfile.write("\end{bmatrix}")
-    
+
+def calc_vector_y(function, n):
+    """ Calculates the vector y_o/y_l using a function f_o/f_l, and n midpoints 
+        This is used for exercise 8 and 9 
+    """
+    t = np.pi/16 + (np.linspace(1, 8, 8)-1)*np.pi/8
+    return function(t)
 
 if __name__ == "__main__":
     
     t1 = np.pi / 6; t2 = np.pi / 2; t3 = 5 * np.pi / 6
     A = np.matrix([[1, np.cos(t1), np.cos(2*t1)],[1,np.cos(t2), np.cos(2*t2)], [1, np.cos(t3), np.cos(2*t3)]])
     B = np.matrix([[1, 2, 3],[4, 5, 6], [7, 8, 9]])
-
     print_matrix(find_inverse(A))
+
+    def test_function(t):
+        return 2*t
+
+    calc_yo(test_function, 8)
