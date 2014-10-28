@@ -24,6 +24,9 @@ print("Is S semi-orthogonal? " , is_semi_orthogonal(S))
 # Finding the inverse matrices of C and S:
 
 print("Inverse of C: ")
-print_matrix(C)
+print_matrix(find_inverse(C))
 print("Inverse of S: ")
-print_matrix(S)
+print_matrix(find_inverse(S))
+
+matrix_to_tex(find_inverse(C), "C_matrix")
+matrix_to_tex(find_inverse(S), "S_matrix")
