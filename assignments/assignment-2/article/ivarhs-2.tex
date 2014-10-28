@@ -70,7 +70,7 @@
 \section*{Problem 1}
 Assume that $U = \left[ \mathbf{u}_1,\dots,\mathbf{u}_n \right]$ is an $\left(n \times n\right)$-matrix.
 Verify that $U$ is \textbf{\textit{semi-orthogonal}} if and only if $\mathbf{u}_j \neq \mathbf{0}$ for $j=1,\dots,n$ and all the $\mathbf{u}_j$'s are orthogonal
-to each other. In other words, $\mathbf{u}_j \cdot \mathbf{u}_j = 0$ when $j \neq i$.
+to each other. In other words, $\mathbf{u}_j \cdot \mathbf{u}_i = 0$ when $j \neq i$.
 
 \begin{definition}
   A quadratic matrix $U$ is called \textbf{semi-orthogonal} if $U^TU$ is a \textbf{diagonal} matrix with only positive entries along the
@@ -206,4 +206,76 @@ This gives us the inverses:
    \frac{1}{3} & -\frac{1}{3} & \frac{1}{3}\\
  \end{bmatrix}
 \end{align*}
+
+\section*{Problem 3}
+According to my python program both the matrices $C$ and $S$ are \textit{\textbf{semi-orthogonal}}, with the following inverses:
+\begin{align*}
+  C^{-1} = \input{../src/C_matrix.tex}\\
+  \\
+  S^{-1} = \input{../src/S_matrix.tex}
+\end{align*}
+Multiplying the matrices with the respective inverses yields the identity matrix in both cases.
+
+\section*{Problem 4}
+Let $\mathcal{F}([0, 2\pi], \mathbb{R})$ be the vector space consisting of all real functions defined on $\left[ 0, \pi \right]$ and let
+$\mathcal{W}_c$ be its subspace that is spanned by the set
+\begin{align*}
+  \mathcal{C} = \left\{ 1, \cos(t), \cos(2t), \dots, \cos(7t) \right\}
+\end{align*}
+We showed in the previous problem that $C$ is semi-orthogonal. It then follows that $C$ is invertible, which means that the columns of $C$ neccessarily
+has to be linearly independent. This, in turn, means that $\mathcal{C}$ is a basis for $\mathcal{W}_C$.
+There is a result regarding signal spaces that tells ut that it is sufficient to show that this holds for the discrete values
+$t = t_1, \dots, t_8$
+
+\section*{Problem 5}
+Let $T_c : \mathcal{W}_c \rightarrow \mathbb{R}^8$ be defined by:
+$$ T_c\left( h \right) = \left( h(t_1),\dots,h(t_8) \right) $$
+for $h \in \mathcal{W}_c$, and let $\epsilon = \left\{ \mathbf{e}_1, \dots, \mathbf{e}_8 \right\}$. \\
+
+Verify that $C$ is the matrix of $T_c$ with respect to the bases $\mathcal{C}$ and $\epsilon$, and show that $T_c$ is an isomorphism. 
+
+$C$ is a matrix with those properties if $T_c(\mathbf{x})$ maps $\left[\mathbf{x}\right]_\mathcal{C}$ to $\left[ T_c(\mathbf{x}) \right]_\epsilon$.
+
+Let $h$ be any arbitrary vector in $\mathcal{W}_c$ with respect to the basis $\mathcal{C}$
+\begin{align*}
+  h = \begin{bmatrix}
+    \lambda_1 \\
+	\vdots \\
+	\lambda_8\\
+  \end{bmatrix}
+\end{align*}.
+
+Multiplying from the left by the matrix $C$, we get
+\begin{align*}
+  Ch = \begin{bmatrix}
+   1 & \dots & \cos(7t_1)\\
+   \vdots & \dots & \vdots \\
+   1 & \dots & \cos(7t_8)\\
+  \end{bmatrix} \begin{bmatrix}
+	\lambda_1\\
+	\vdots \\
+	\lambda_8\\
+  \end{bmatrix} = \left[\left( h(t_1), \dots, h(t_8) \right)\left]_\epsilon
+\end{align*}
+Since $h$ was any arbitrary vector from $\mathcal{W}_c$, this means that $C$ is the matrix of $T_c$ with respect to the bases $\mathcal{C}$ and $\epsilon$.
+
+Since $\mathcal{C}$ is a basis for $\mathcal{W}_c$, and $\epsilon$ is a basis for $\mathbb{R}^8$ it follows that $T_c$ is a bijective transformation. Since $T_c$ is linear, this 
+means $T_c$ is an isomorph transformation. 
+The matrix for $T_c^{-1}$ is $C^{-1}$. 
+\section*{Problem 6}
+Let $g \in \mathcal{F}\left( \left[ 0, \pi \right], \mathbb{R} \right)$ and set
+$\mathbf{y} = \left(g(t_1), \dots, g(t_8)) \in \mathbb{R}^8$. In addition, let
+\begin{align*}
+  g^c = T_c^{-1}(\mathbf{y}) \in \mathcal{W}_c
+\end{align*}
+
+Show that $g^c$ is an 8-midpoint interpolation of $g$ on the interval $\left[ 0, \pi \right]$ that satisfy $\left[ g^c \right]_C = C^{-1}\mathbf{y}$.
+
+$g^c$ is a function in $\mathcal{W}_c$ that is defined in such a way that $g^c$ interpolate $g$ in the midpoints $t_1, \dots, t_8$. This means that $g^c$ is an 8-midpoint interpolation of $g$ on $\left[ 0, \pi \right]$ since, 
+
+\begin{align*}
+  Cg^c &= CT_c^{-1}(\mathbf{y}) = CC^{-1}\mathbf{y} = \mathbf{y}\\
+  T_c(g^c) &= C\left[ g^c \right]_C = y \Leftrightarrow \left[ g^c \right]_C = C^{-1}\mathbf{y}
+\end{align*}.
+
 \end{document}
